@@ -118,6 +118,65 @@ const generatedPassword = randomPasswordGenerator(passwordLength);
 
 
 // Task 7: Implement a function that converts a Roman numeral to an integer. The function should take a Roman numeral string (e.g., "IX" or "XXI") as input and return the corresponding integer value
+const romanNumberConverter=inputRomanNumber=> {
+    let intNum = 0;
+    const romanNumbersValues = new Map([
+      ['I', 1],
+      ['V', 5],
+      ['X', 10],
+      ['L', 50],
+      ['C', 100],
+      ['D', 500],
+      ['M', 1000],
+    ]);
+  
+    for (let i = 0; i < inputRomanNumber.length; i++) {
+      const currentSymbol = inputRomanNumber[i];
+      const nextSymbol = inputRomanNumber[i + 1];
+  
+      const currentValue = romanNumbersValues.get(currentSymbol);
+      const nextValue = romanNumbersValues.get(nextSymbol);
+  
+      if (nextValue > currentValue) {
+        intNum -= currentValue;
+      } else {
+        intNum += currentValue;
+      }
+    }
+  
+    return intNum;
+  }
+  
+  const romanNumber = "IX"
+  const intNumber=romanNumberConverter(romanNumber)
 
+
+//   Task 8: Implement a JavaScript function to find the second smallest element in an array of numbers. The function should return the second smallest number.
+const secondSmallestNumFinder=arr=> {
+    let smallest = arr[0];
+    let secondSmallest = arr[1];
+  
+    if (smallest > secondSmallest) {
+      [smallest, secondSmallest] = [secondSmallest, smallest];
+    }
+  
+    for (let i = 2; i < arr.length; i++) {
+      const num = arr[i];
+      
+      if (num < smallest) {
+        secondSmallest = smallest;
+        smallest = num;
+      } else if (num > smallest && num < secondSmallest) {
+        secondSmallest = num;
+      }
+    }
+    return secondSmallest;
+  }
+  
+  const arr = [5, 8, 2, 1, 9, 10, 7]
+ const secondSmallestNum=secondSmallestNumFinder(arr)
+  
+
+  
 
 
